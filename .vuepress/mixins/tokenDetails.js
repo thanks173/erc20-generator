@@ -1,5 +1,5 @@
 export default {
-  data () {
+  data() {
     return {
       tokenDetails: [
         {
@@ -16,9 +16,6 @@ export default {
           burnable: false,
           erc1363: false,
           tokenRecover: false,
-          removeCopyright: false,
-          originalPrice: 0,
-          price: 0,
           gas: 1163434,
         },
         {
@@ -35,9 +32,6 @@ export default {
           burnable: false,
           erc1363: false,
           tokenRecover: false,
-          removeCopyright: true,
-          originalPrice: 0.15,
-          price: 0,
           gas: 1123801,
         },
         {
@@ -54,9 +48,6 @@ export default {
           burnable: true,
           erc1363: false,
           tokenRecover: false,
-          removeCopyright: true,
-          originalPrice: 0.20,
-          price: 0,
           gas: 1330812,
         },
         {
@@ -73,9 +64,6 @@ export default {
           burnable: false,
           erc1363: false,
           tokenRecover: false,
-          removeCopyright: true,
-          originalPrice: 0.25,
-          price: 0,
           gas: 1502638,
         },
         {
@@ -92,9 +80,6 @@ export default {
           burnable: false,
           erc1363: false,
           tokenRecover: false,
-          removeCopyright: true,
-          originalPrice: 0.30,
-          price: 0,
           gas: 1367134,
         },
         {
@@ -111,9 +96,6 @@ export default {
           burnable: true,
           erc1363: false,
           tokenRecover: false,
-          removeCopyright: true,
-          originalPrice: 0.35,
-          price: 0,
           gas: 1919665,
         },
         {
@@ -130,9 +112,6 @@ export default {
           burnable: true,
           erc1363: false,
           tokenRecover: false,
-          removeCopyright: true,
-          originalPrice: 0.45,
-          price: 0,
           gas: 2615887,
         },
         {
@@ -149,9 +128,6 @@ export default {
           burnable: true,
           erc1363: true,
           tokenRecover: true,
-          removeCopyright: true,
-          originalPrice: 0.85,
-          price: 0,
           gas: 2665131,
         },
         {
@@ -168,9 +144,6 @@ export default {
           burnable: true,
           erc1363: true,
           tokenRecover: true,
-          removeCopyright: true,
-          originalPrice: 0.95,
-          price: 0,
           gas: 3525945,
         },
       ],

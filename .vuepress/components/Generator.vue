@@ -322,18 +322,6 @@
                         Verified Source Code
                       </b-form-checkbox>
                     </b-form-group>
-                    <b-form-group
-                      description="Remove the link pointing to this page from your contract."
-                    >
-                      <b-form-checkbox
-                        v-model="token.removeCopyright"
-                        size="sm"
-                        disabled
-                        switch
-                      >
-                        Remove Copyright
-                      </b-form-checkbox>
-                    </b-form-group>
                     <b-form-group>
                       <b-form-checkbox
                         v-model="token.burnable"
@@ -521,7 +509,6 @@ export default {
         burnable: false,
         erc1363: false,
         tokenRecover: false,
-        removeCopyright: false,
       },
     };
   },
@@ -673,8 +660,6 @@ export default {
       this.token.burnable = detail.burnable;
       this.token.erc1363 = detail.erc1363;
       this.token.tokenRecover = detail.tokenRecover;
-      this.token.removeCopyright = detail.removeCopyright;
-      this.token.price = detail.price;
       this.token.gas = this.web3.utils.toBN(detail.gas);
 
       this.token.decimals = detail.customizeDecimals ? this.token.decimals : 18;
