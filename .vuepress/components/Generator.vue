@@ -528,6 +528,9 @@ export default {
   mounted() {
     this.tokenType = this.getParam("tokenType") || "SimpleERC20";
     this.currentNetwork = this.getParam("network") || this.network.default;
+    window.ethereum.on("chainChanged", (chainId) => {
+      this.initDapp();
+    });
     this.initDapp();
   },
   methods: {
@@ -636,7 +639,6 @@ export default {
                     this.network.current.etherscanLink +
                     "/token/" +
                     this.token.address;
-                  this.token.widget = `https://heri16.github.io/watch-token/create/?address=${this.token.address}&network=${this.currentNetwork}`;
                   this.$forceUpdate();
                   this.makeToast(
                     "Well done!",

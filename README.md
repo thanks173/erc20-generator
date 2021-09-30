@@ -11,8 +11,6 @@ meta:
       content: Create an ERC20 Token in less than a minute with the most used Smart Contract Generator for ERC20 Token. No login. No setup. No coding required.
     - property: og:description
       content: Create an ERC20 Token in less than a minute with the most used Smart Contract Generator for ERC20 Token. No login. No setup. No coding required.
-    - property: og:url
-      content: https://heri16.github.io/erc20-generator/
 ---
 
 # ERC20 Token Generator - DAPP
@@ -21,7 +19,7 @@ Easily deploy Smart Contract for a Standard, Capped, Mintable, Burnable, Payable
 
 ## Try it
 
-https://heri16.github.io/erc20-generator/
+https://erc20-free-generator.netlify.app/
 
 ## License
 
