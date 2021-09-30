@@ -2,14 +2,14 @@
 
 export default {
   methods: {
-    isMobile () {
+    isMobile() {
       try {
         return /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
       } catch (e) {
         return false;
       }
     },
-    getParam (param) {
+    getParam(param) {
       const vars = {};
       window.location.href.replace(location.hash, '').replace(
         /[?&]+([^=&]+)=?([^&]*)?/gi, // regexp
@@ -23,14 +23,14 @@ export default {
       }
       return vars;
     },
-    makeToast (title, text, variant = null) {
+    makeToast(title, text, variant = null) {
       this.$bvToast.toast(text, {
         title: title,
         variant: variant,
         solid: true,
       });
     },
-    promisify (fn, ...args) {
+    promisify(fn, ...args) {
       return new Promise((resolve, reject) => {
         fn(...args, (err, res) => {
           if (err) {
@@ -40,20 +40,6 @@ export default {
           }
         });
       });
-    },
-    gaSend (category, action, label) {
-      try {
-        ga('send', 'event', category, action, label);
-      } catch (e) {
-        console.log('ga send', { category, action, label });
-      }
-    },
-    fbtrack (eventName, eventParams) {
-      try {
-        fbq('track', eventName, (eventParams || {}));
-      } catch (e) {
-        console.log('fb track', { eventName: eventName, eventParams: (eventParams || {}) });
-      }
     },
   },
 };

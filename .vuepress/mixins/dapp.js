@@ -11,13 +11,11 @@ import UnlimitedERC20 from '../abi/token/UnlimitedERC20.json';
 import AmazingERC20 from '../abi/token/AmazingERC20.json';
 import PowerfulERC20 from '../abi/token/PowerfulERC20.json';
 
-import ServiceReceiverArtifact from '../abi/service/ServiceReceiver.json';
-
 export default {
   mixins: [
     utils,
   ],
-  data () {
+  data() {
     return {
       web3: null,
       web3Provider: null,
@@ -34,41 +32,54 @@ export default {
           4: 'rinkeby',
           42: 'kovan',
           5: 'goerli',
+          80001: 'mumbai',
+          97: 'bscTestnet'
         },
         list: {
           mainnet: {
             web3Provider: `https://mainnet.infura.io/v3/${config.infuraProjectId}`,
             etherscanLink: 'https://etherscan.io',
             id: 1,
-            name: 'Main Ethereum Network',
+            name: 'Ethereum Mainnet',
           },
           ropsten: {
             web3Provider: `https://ropsten.infura.io/v3/${config.infuraProjectId}`,
             etherscanLink: 'https://ropsten.etherscan.io',
             id: 3,
-            name: 'Ropsten Test Network',
+            name: 'Ropsten Testnet',
           },
           rinkeby: {
             web3Provider: `https://rinkeby.infura.io/v3/${config.infuraProjectId}`,
             etherscanLink: 'https://rinkeby.etherscan.io',
             id: 4,
-            name: 'Rinkeby Test Network',
+            name: 'Rinkeby Testnet',
           },
           kovan: {
             web3Provider: `https://kovan.infura.io/v3/${config.infuraProjectId}`,
             etherscanLink: 'https://kovan.etherscan.io',
             id: 42,
-            name: 'Kovan Test Network',
+            name: 'Kovan Testnet',
           },
           goerli: {
             web3Provider: `https://goerli.infura.io/v3/${config.infuraProjectId}`,
             etherscanLink: 'https://goerli.etherscan.io',
             id: 5,
-            name: 'Goerli Test Network',
+            name: 'Goerli Testnet',
+          },
+          mumbai: {
+            web3Provider: `https://rpc-mumbai.maticvigil.com`,
+            etherscanLink: 'https://mumbai.polygonscan.com/',
+            id: 80001,
+            name: 'Mumbai Testnet',
+          },
+          bscTestnet: {
+            web3Provider: `https://data-seed-prebsc-1-s1.binance.org:8545`,
+            etherscanLink: 'https://testnet.bscscan.com/',
+            id: 97,
+            name: 'BSC Testnet',
           },
         },
       },
-      serviceReceiver: config.serviceReceiver,
       tokenList: {
         SimpleERC20,
         StandardERC20,
@@ -87,7 +98,7 @@ export default {
     };
   },
   methods: {
-    async initWeb3 (network, checkWeb3) {
+    async initWeb3(network, checkWeb3) {
       if (!Object.prototype.hasOwnProperty.call(this.network.list, network)) {
         throw new Error(
           `Failed initializing network ${network}. Allowed values are ${Object.keys(this.network.list)}.`,
@@ -115,13 +126,7 @@ export default {
         this.web3 = new Web3(this.web3Provider);
       }
     },
-    initService (network) {
-      this.contracts.service = new this.web3.eth.Contract(
-        ServiceReceiverArtifact.abi,
-        this.serviceReceiver[network],
-      );
-    },
-    initToken (tokenType) {
+    initToken(tokenType) {
       this.contracts.token = this.tokenList[tokenType];
       this.contracts.token.stringifiedAbi = JSON.stringify(this.contracts.token.abi);
     },
