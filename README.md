@@ -1,12 +1,8 @@
----
-component: Home
-title: ERC20 Token Generator | Create ERC20 Token for FREE
-description: Create an ERC20 Token in less than a minute with the most used Smart Contract Generator for ERC20 Token. No login. No setup. No coding required.
----
-
 # ERC20 Token Generator - DAPP
 
 Easily deploy Smart Contract for a Standard, Capped, Mintable, Burnable, Payable ERC20 Token.
+
+Create an ERC20 Token in less than a minute. No login. No setup. No coding required. No fee.
 
 ## Try it
 
