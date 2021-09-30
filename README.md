@@ -23,4 +23,4 @@ https://erc20-free-generator.netlify.app/
 
 ## License
 
-Code released under the [MIT License](https://github.com/heri16/erc20-generator/blob/master/LICENSE).
+Code released under the MIT License.
