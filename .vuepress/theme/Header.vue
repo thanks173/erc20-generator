@@ -17,13 +17,13 @@
 </template>
 
 <script>
-export default {
-  name: "Header",
-  props: {
-    page: {
-      type: String,
-      default: null,
+  export default {
+    name: 'Header',
+    props: {
+      page: {
+        type: String,
+        default: null,
+      },
     },
-  },
-};
+  };
 </script>

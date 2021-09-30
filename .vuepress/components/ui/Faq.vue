@@ -1181,7 +1181,7 @@
 </template>
 
 <script>
-export default {
-  name: "Faq",
-};
+  export default {
+    name: 'Faq',
+  };
 </script>

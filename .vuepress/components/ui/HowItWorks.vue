@@ -89,7 +89,7 @@
 </template>
 
 <script>
-export default {
-  name: "HowItWorks",
-};
+  export default {
+    name: 'HowItWorks',
+  };
 </script>

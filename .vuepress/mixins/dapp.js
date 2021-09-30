@@ -15,7 +15,7 @@ export default {
   mixins: [
     utils,
   ],
-  data() {
+  data () {
     return {
       web3: null,
       web3Provider: null,
@@ -33,7 +33,7 @@ export default {
           42: 'kovan',
           5: 'goerli',
           80001: 'mumbai',
-          97: 'bscTestnet'
+          97: 'bscTestnet',
         },
         list: {
           mainnet: {
@@ -67,13 +67,13 @@ export default {
             name: 'Goerli Testnet',
           },
           mumbai: {
-            web3Provider: `https://rpc-mumbai.maticvigil.com`,
+            web3Provider: 'https://rpc-mumbai.maticvigil.com',
             etherscanLink: 'https://mumbai.polygonscan.com/',
             id: 80001,
             name: 'Mumbai Testnet',
           },
           bscTestnet: {
-            web3Provider: `https://data-seed-prebsc-1-s1.binance.org:8545`,
+            web3Provider: 'https://data-seed-prebsc-1-s1.binance.org:8545',
             etherscanLink: 'https://testnet.bscscan.com/',
             id: 97,
             name: 'BSC Testnet',
@@ -98,7 +98,7 @@ export default {
     };
   },
   methods: {
-    async initWeb3(network, checkWeb3) {
+    async initWeb3 (network, checkWeb3) {
       if (!Object.prototype.hasOwnProperty.call(this.network.list, network)) {
         throw new Error(
           `Failed initializing network ${network}. Allowed values are ${Object.keys(this.network.list)}.`,
@@ -126,7 +126,7 @@ export default {
         this.web3 = new Web3(this.web3Provider);
       }
     },
-    initToken(tokenType) {
+    initToken (tokenType) {
       this.contracts.token = this.tokenList[tokenType];
       this.contracts.token.stringifiedAbi = JSON.stringify(this.contracts.token.abi);
     },

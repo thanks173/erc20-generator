@@ -7,17 +7,17 @@
   </div>
 </template>
 <script>
-import SiteHeader from "./Header.vue";
+  import SiteHeader from './Header.vue';
 
-export default {
-  components: {
-    SiteHeader,
-  },
-  computed: {
-    page() {
-      return this.$page.frontmatter.component || null;
+  export default {
+    components: {
+      SiteHeader,
     },
-  },
-};
+    computed: {
+      page () {
+        return this.$page.frontmatter.component || null;
+      },
+    },
+  };
 </script>
 <style src="../scss/main.scss" lang="scss"></style>

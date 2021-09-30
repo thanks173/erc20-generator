@@ -152,7 +152,7 @@
                       v-slot="{ errors }"
                     >
                       <b-form-group
-                        description="Insert the decimal precision of your token. If you don't know what to insert, use 18."
+                        description="Insert the decimal precision of your token. Default: 18"
                         label="Token decimals *"
                         label-for="tokenDecimals"
                       >
@@ -477,268 +477,268 @@
 </template>
 
 <script>
-import dapp from "../mixins/dapp";
-import tokenDetails from "../mixins/tokenDetails";
+  import dapp from '../mixins/dapp';
+  import tokenDetails from '../mixins/tokenDetails';
 
-export default {
-  name: "Generator",
-  mixins: [dapp, tokenDetails],
-  data() {
-    return {
-      loading: true,
-      currentNetwork: null,
-      tokenType: "",
-      trx: {
-        hash: "",
-        link: "",
-      },
-      transactionStarted: false,
-      makingTransaction: false,
-      formDisabled: false,
-      feeAmount: "0",
-      token: {
-        name: "",
-        symbol: "",
-        decimals: 18,
-        cap: "",
-        initialBalance: "",
-        supplyType: "Fixed",
-        accessType: "None",
-        transferType: "Unstoppable",
-        mintable: false,
-        burnable: false,
-        erc1363: false,
-        tokenRecover: false,
-      },
-    };
-  },
-  mounted() {
-    this.tokenType = this.getParam("tokenType") || "SimpleERC20";
-    this.currentNetwork = this.getParam("network") || this.network.default;
-    window.ethereum.on("chainChanged", (chainId) => {
+  export default {
+    name: 'Generator',
+    mixins: [dapp, tokenDetails],
+    data () {
+      return {
+        loading: true,
+        currentNetwork: null,
+        tokenType: '',
+        trx: {
+          hash: '',
+          link: '',
+        },
+        transactionStarted: false,
+        makingTransaction: false,
+        formDisabled: false,
+        feeAmount: '0',
+        token: {
+          name: '',
+          symbol: '',
+          decimals: 18,
+          cap: '',
+          initialBalance: '',
+          supplyType: 'Fixed',
+          accessType: 'None',
+          transferType: 'Unstoppable',
+          mintable: false,
+          burnable: false,
+          erc1363: false,
+          tokenRecover: false,
+        },
+      };
+    },
+    mounted () {
+      this.tokenType = this.getParam('tokenType') || 'SimpleERC20';
+      this.currentNetwork = this.getParam('network') || this.network.default;
+      window.ethereum.on('chainChanged', (chainId) => {
+        this.initDapp();
+      });
       this.initDapp();
-    });
-    this.initDapp();
-  },
-  methods: {
-    async initDapp() {
-      this.network.current = this.network.list[this.currentNetwork];
-      try {
-        await this.initWeb3(this.currentNetwork, true);
-        await this.loadToken();
-      } catch (e) {
-        console.log(e); // eslint-disable-line no-console
-        this.makeToast("Some errors occurred", e, "danger");
-      }
     },
-    async loadToken() {
-      if (
-        !Object.prototype.hasOwnProperty.call(this.tokenList, this.tokenType)
-      ) {
-        this.makeToast(
-          "Some errors occurred",
-          "Selected token type does not exist!",
-          "danger"
-        );
+    methods: {
+      async initDapp () {
+        this.network.current = this.network.list[this.currentNetwork];
+        try {
+          await this.initWeb3(this.currentNetwork, true);
+          await this.loadToken();
+        } catch (e) {
+          console.log(e); // eslint-disable-line no-console
+          this.makeToast('Some errors occurred', e, 'danger');
+        }
+      },
+      async loadToken () {
+        if (
+          !Object.prototype.hasOwnProperty.call(this.tokenList, this.tokenType)
+        ) {
+          this.makeToast(
+            'Some errors occurred',
+            'Selected token type does not exist!',
+            'danger',
+          );
 
-        this.tokenType = "SimpleERC20";
-      }
+          this.tokenType = 'SimpleERC20';
+        }
 
-      this.initToken(this.tokenType);
+        this.initToken(this.tokenType);
 
-      this.updateTokenDetails();
-      this.updateCap();
+        this.updateTokenDetails();
+        this.updateCap();
 
-      this.loading = false;
-    },
-    async generateToken() {
-      this.$refs.observer
-        .validate()
-        .then(async (result) => {
-          if (result) {
-            if (!this.metamask.installed) {
-              this.makeToast(
-                "Warning",
-                "To create a Token please install MetaMask!",
-                "danger"
-              );
-              return;
-            } else {
-              if (this.metamask.netId !== this.network.current.id) {
+        this.loading = false;
+      },
+      async generateToken () {
+        this.$refs.observer
+          .validate()
+          .then(async (result) => {
+            if (result) {
+              if (!this.metamask.installed) {
                 this.makeToast(
-                  "Warning",
-                  `Your MetaMask in on the wrong network. Please switch on ${this.network.current.name} and try again!`,
-                  "warning"
+                  'Warning',
+                  'To create a Token please install MetaMask!',
+                  'danger',
                 );
                 return;
+              } else {
+                if (this.metamask.netId !== this.network.current.id) {
+                  this.makeToast(
+                    'Warning',
+                    `Your MetaMask in on the wrong network. Please switch on ${this.network.current.name} and try again!`,
+                    'warning',
+                  );
+                  return;
+                }
+              }
+
+              try {
+                this.trx.hash = '';
+                this.trx.link = '';
+                this.formDisabled = true;
+                this.makingTransaction = true;
+
+                await this.web3Provider.request({
+                  method: 'eth_requestAccounts',
+                });
+
+                const tokenContract = new this.web3.eth.Contract(
+                  this.contracts.token.abi,
+                );
+
+                const deployOptions = {
+                  data: this.contracts.token.bytecode,
+                  arguments: this.getDeployArguments(),
+                };
+
+                const sendOptions = {
+                  from: await this.promisify(this.web3.eth.getCoinbase),
+                  value: this.feeAmount,
+                };
+
+                sendOptions.gas = await this.estimateDeployGas(
+                  tokenContract,
+                  deployOptions,
+                  sendOptions,
+                );
+
+                tokenContract
+                  .deploy(deployOptions)
+                  .send(sendOptions)
+                  .on('error', (error) => {
+                    console.log(error.message); // eslint-disable-line no-console
+
+                    this.makingTransaction = false;
+                    this.formDisabled = false;
+
+                    this.makeToast('Error!', error.message, 'danger');
+                  })
+                  .on('transactionHash', (transactionHash) => {
+                    this.transactionStarted = true;
+                    this.trx.hash = transactionHash;
+                    this.trx.link = `${this.network.current.etherscanLink}/tx/${this.trx.hash}`;
+                  })
+                  .on('receipt', (receipt) => {
+                    this.token.address = receipt.contractAddress;
+                    this.token.link =
+                      this.network.current.etherscanLink +
+                      '/token/' +
+                      this.token.address;
+                    this.$forceUpdate();
+                    this.makeToast(
+                      'Well done!',
+                      'Your Token has been deployed!',
+                      'success',
+                    );
+                  });
+              } catch (e) {
+                this.makingTransaction = false;
+                this.formDisabled = false;
+                this.makeToast('Some error occurred', e.message, 'danger');
               }
             }
+          })
+          .catch((e) => {
+            console.log(e); // eslint-disable-line no-console
+            this.makingTransaction = false;
+            this.makeToast('Some error occurred', e.message, 'danger');
+          });
+      },
+      updateTokenDetails () {
+        const detail = this.tokenDetails.find(
+          (elem) => elem.name === this.tokenType,
+        );
 
-            try {
-              this.trx.hash = "";
-              this.trx.link = "";
-              this.formDisabled = true;
-              this.makingTransaction = true;
+        this.token.customizeDecimals = detail.customizeDecimals;
+        this.token.verified = detail.verified;
+        this.token.supplyType = detail.supplyType;
+        this.token.accessType = detail.accessType;
+        this.token.transferType = detail.transferType;
+        this.token.mintable = detail.mintable;
+        this.token.burnable = detail.burnable;
+        this.token.erc1363 = detail.erc1363;
+        this.token.tokenRecover = detail.tokenRecover;
+        this.token.gas = this.web3.utils.toBN(detail.gas);
 
-              await this.web3Provider.request({
-                method: "eth_requestAccounts",
-              });
+        this.token.decimals = detail.customizeDecimals ? this.token.decimals : 18;
+      },
+      updateCap () {
+        this.token.cap =
+          this.token.supplyType === 'Fixed'
+            ? this.token.initialBalance
+            : this.token.cap;
+      },
+      getDeployArguments () {
+        const name = this.token.name;
+        const symbol = this.token.symbol;
+        const decimals = this.web3.utils.toBN(this.token.decimals);
+        const cap = this.web3.utils
+          .toBN(this.token.cap)
+          .mul(this.web3.utils.toBN(Math.pow(10, this.token.decimals)));
+        const initialBalance = this.web3.utils
+          .toBN(this.token.initialBalance)
+          .mul(this.web3.utils.toBN(Math.pow(10, this.token.decimals))); // eslint-disable-line max-len
 
-              const tokenContract = new this.web3.eth.Contract(
-                this.contracts.token.abi
-              );
+        const params = [name, symbol];
 
-              const deployOptions = {
-                data: this.contracts.token.bytecode,
-                arguments: this.getDeployArguments(),
-              };
-
-              const sendOptions = {
-                from: await this.promisify(this.web3.eth.getCoinbase),
-                value: this.feeAmount,
-              };
-
-              sendOptions.gas = await this.estimateDeployGas(
-                tokenContract,
-                deployOptions,
-                sendOptions
-              );
-
-              tokenContract
-                .deploy(deployOptions)
-                .send(sendOptions)
-                .on("error", (error) => {
-                  console.log(error.message); // eslint-disable-line no-console
-
-                  this.makingTransaction = false;
-                  this.formDisabled = false;
-
-                  this.makeToast("Error!", error.message, "danger");
-                })
-                .on("transactionHash", (transactionHash) => {
-                  this.transactionStarted = true;
-                  this.trx.hash = transactionHash;
-                  this.trx.link = `${this.network.current.etherscanLink}/tx/${this.trx.hash}`;
-                })
-                .on("receipt", (receipt) => {
-                  this.token.address = receipt.contractAddress;
-                  this.token.link =
-                    this.network.current.etherscanLink +
-                    "/token/" +
-                    this.token.address;
-                  this.$forceUpdate();
-                  this.makeToast(
-                    "Well done!",
-                    "Your Token has been deployed!",
-                    "success"
-                  );
-                });
-            } catch (e) {
-              this.makingTransaction = false;
-              this.formDisabled = false;
-              this.makeToast("Some error occurred", e.message, "danger");
-            }
-          }
-        })
-        .catch((e) => {
-          console.log(e); // eslint-disable-line no-console
-          this.makingTransaction = false;
-          this.makeToast("Some error occurred", e.message, "danger");
-        });
-    },
-    updateTokenDetails() {
-      const detail = this.tokenDetails.find(
-        (elem) => elem.name === this.tokenType
-      );
-
-      this.token.customizeDecimals = detail.customizeDecimals;
-      this.token.verified = detail.verified;
-      this.token.supplyType = detail.supplyType;
-      this.token.accessType = detail.accessType;
-      this.token.transferType = detail.transferType;
-      this.token.mintable = detail.mintable;
-      this.token.burnable = detail.burnable;
-      this.token.erc1363 = detail.erc1363;
-      this.token.tokenRecover = detail.tokenRecover;
-      this.token.gas = this.web3.utils.toBN(detail.gas);
-
-      this.token.decimals = detail.customizeDecimals ? this.token.decimals : 18;
-    },
-    updateCap() {
-      this.token.cap =
-        this.token.supplyType === "Fixed"
-          ? this.token.initialBalance
-          : this.token.cap;
-    },
-    getDeployArguments() {
-      const name = this.token.name;
-      const symbol = this.token.symbol;
-      const decimals = this.web3.utils.toBN(this.token.decimals);
-      const cap = this.web3.utils
-        .toBN(this.token.cap)
-        .mul(this.web3.utils.toBN(Math.pow(10, this.token.decimals)));
-      const initialBalance = this.web3.utils
-        .toBN(this.token.initialBalance)
-        .mul(this.web3.utils.toBN(Math.pow(10, this.token.decimals))); // eslint-disable-line max-len
-
-      const params = [name, symbol];
-
-      switch (this.tokenType) {
-        case "SimpleERC20":
+        switch (this.tokenType) {
+        case 'SimpleERC20':
           params.push(initialBalance);
           break;
-        case "StandardERC20":
-        case "BurnableERC20":
-        case "PausableERC20":
-        case "UnlimitedERC20":
-        case "AmazingERC20":
+        case 'StandardERC20':
+        case 'BurnableERC20':
+        case 'PausableERC20':
+        case 'UnlimitedERC20':
+        case 'AmazingERC20':
           params.push(decimals);
           params.push(initialBalance);
           break;
-        case "MintableERC20":
-        case "CommonERC20":
-        case "PowerfulERC20":
+        case 'MintableERC20':
+        case 'CommonERC20':
+        case 'PowerfulERC20':
           params.push(decimals);
           params.push(cap);
           params.push(initialBalance);
           break;
         default:
-          throw new Error("Invalid Token Type");
-      }
+          throw new Error('Invalid Token Type');
+        }
 
-      return params;
-    },
-    async estimateDeployGas(tokenContract, deployOptions, sendOptions) {
-      try {
-        const gas = await this.promisify(
-          tokenContract.deploy(deployOptions).estimateGas,
-          sendOptions
-        );
+        return params;
+      },
+      async estimateDeployGas (tokenContract, deployOptions, sendOptions) {
+        try {
+          const gas = await this.promisify(
+            tokenContract.deploy(deployOptions).estimateGas,
+            sendOptions,
+          );
 
-        return this.web3.utils.toBN(gas).muln(1.3); // add 30% tolerance
-      } catch (e) {
-        console.log(e); // eslint-disable-line no-console
+          return this.web3.utils.toBN(gas).muln(1.3); // add 30% tolerance
+        } catch (e) {
+          console.log(e); // eslint-disable-line no-console
 
-        return this.token.gas;
-      }
-    },
-    async addToMetaMask() {
-      try {
-        await this.web3Provider.request({
-          method: "wallet_watchAsset",
-          params: {
-            type: "ERC20",
-            options: {
-              address: this.token.address,
-              symbol: this.token.symbol.substr(0, 5),
-              decimals: this.token.decimals,
+          return this.token.gas;
+        }
+      },
+      async addToMetaMask () {
+        try {
+          await this.web3Provider.request({
+            method: 'wallet_watchAsset',
+            params: {
+              type: 'ERC20',
+              options: {
+                address: this.token.address,
+                symbol: this.token.symbol.substr(0, 5),
+                decimals: this.token.decimals,
+              },
             },
-          },
-        });
-      } catch (e) {
-        console.log(e); // eslint-disable-line no-console
-      }
+          });
+        } catch (e) {
+          console.log(e); // eslint-disable-line no-console
+        }
+      },
     },
-  },
-};
+  };
 </script>
