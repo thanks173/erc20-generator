@@ -539,7 +539,6 @@ export default {
       } catch (e) {
         console.log(e); // eslint-disable-line no-console
         this.makeToast("Some errors occurred", e, "danger");
-        // document.location.href = this.$withBase('/');
       }
     },
     async loadToken() {

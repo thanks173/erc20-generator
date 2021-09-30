@@ -15,7 +15,7 @@
       <hr class="my-5" />
       <p>
         <b-button
-          to="/create-token/"
+          to="/erc20-token/"
           size="lg"
           variant="success"
           class="my-2 py-3 px-5 text-uppercase"
