@@ -357,49 +357,6 @@
                 </b-card-text>
               </b-collapse>
             </b-card>
-            <b-card
-              no-body
-              bg-variant="light"
-              itemscope
-              itemprop="mainEntity"
-              itemtype="https://schema.org/Question"
-            >
-              <b-card-header role="tab">
-                <a
-                  v-b-toggle
-                  href="#will-copyright-be-an-issue"
-                  @click.prevent
-                  class="btn-block text-reset text-decoration-none"
-                >
-                  <span itemprop="name">
-                    Will be having ERC20 Generator Copyright an issue?
-                  </span>
-                </a>
-              </b-card-header>
-              <b-collapse
-                id="will-copyright-be-an-issue"
-                class="p-4"
-                accordion="features-accordion"
-              >
-                <b-card-text
-                  itemscope
-                  itemprop="acceptedAnswer"
-                  itemtype="https://schema.org/Answer"
-                >
-                  <span itemprop="text">
-                    No. ERC20 Generator code is released under MIT License so,
-                    using SimpleERC20 for FREE, you will have a view method in
-                    your Smart Contract named "generator" showing a link to this
-                    page. You will also have a disclaimer in source code. It is
-                    not an issue for you because of your Token will be fully
-                    compliant with ERC20 definition. You can use your Token in
-                    Exchanges, DEX, Uniswap, any ERC20 compatible wallet, etc.
-                    You can remove it by choosing a token type with remove
-                    Copyright feature.
-                  </span>
-                </b-card-text>
-              </b-collapse>
-            </b-card>
           </div>
         </b-collapse>
 
@@ -837,7 +794,6 @@
                     (not of your intentions).
                   </span>
                 </b-card-text>
-                <b-link to="/docs/" class="card-link"> Documentation </b-link>
               </b-collapse>
             </b-card>
           </div>
