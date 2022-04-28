@@ -1,23 +1,6 @@
-// SPDX-License-Identifier: MIT
-
-/*
- * Token has been generated for FREE using https://vittominacori.github.io/erc20-generator/
- *
- * NOTE: "Contract Source Code Verified (Similar Match)" means that this Token is similar to other tokens deployed
- *  using the same generator. It is not an issue. It means that you won't need to verify your source code because of
- *  it is already verified.
- *
- * DISCLAIMER: GENERATOR'S AUTHOR IS FREE OF ANY LIABILITY REGARDING THE TOKEN AND THE USE THAT IS MADE OF IT.
- *  The following code is provided under MIT License. Anyone can use it as per their needs.
- *  The generator's purpose is to make people able to tokenize their ideas without coding or paying for it.
- *  Source code is well tested and continuously updated to reduce risk of bugs and to introduce language optimizations.
- *  Anyway the purchase of tokens involves a high degree of risk. Before acquiring tokens, it is recommended to
- *  carefully weighs all the information and risks detailed in Token owner's Conditions.
- */
-
 // File: @openzeppelin/contracts/utils/Context.sol
 
-
+// SPDX-License-Identifier: MIT
 
 pragma solidity >=0.6.0 <0.8.0;
 
@@ -44,7 +27,7 @@ abstract contract Context {
 
 // File: @openzeppelin/contracts/token/ERC20/IERC20.sol
 
-
+// SPDX-License-Identifier: MIT
 
 pragma solidity ^0.7.0;
 
@@ -124,7 +107,7 @@ interface IERC20 {
 
 // File: @openzeppelin/contracts/math/SafeMath.sol
 
-
+// SPDX-License-Identifier: MIT
 
 pragma solidity ^0.7.0;
 
@@ -341,10 +324,9 @@ library SafeMath {
 
 // File: @openzeppelin/contracts/token/ERC20/ERC20.sol
 
-
+// SPDX-License-Identifier: MIT
 
 pragma solidity ^0.7.0;
-
 
 
 
@@ -647,88 +629,22 @@ contract ERC20 is Context, IERC20 {
     function _beforeTokenTransfer(address from, address to, uint256 amount) internal virtual { }
 }
 
-// File: contracts/service/ServicePayer.sol
-
-
-
-pragma solidity ^0.7.0;
-
-interface IPayable {
-    function pay(string memory serviceName) external payable;
-}
-
-/**
- * @title ServicePayer
- * @dev Implementation of the ServicePayer
- */
-abstract contract ServicePayer {
-
-    constructor (address payable receiver, string memory serviceName) payable {
-        IPayable(receiver).pay{value: msg.value}(serviceName);
-    }
-}
-
-// File: contracts/utils/GeneratorCopyright.sol
-
-
-
-pragma solidity ^0.7.0;
-
-/**
- * @title GeneratorCopyright
- * @author ERC20 Generator (https://vittominacori.github.io/erc20-generator)
- * @dev Implementation of the GeneratorCopyright
- */
-contract GeneratorCopyright {
-
-    string private constant _GENERATOR = "https://vittominacori.github.io/erc20-generator";
-    string private _version;
-
-    constructor (string memory version_) {
-        _version = version_;
-    }
-
-    /**
-     * @dev Returns the token generator tool.
-     */
-    function generator() public pure returns (string memory) {
-        return _GENERATOR;
-    }
-
-    /**
-     * @dev Returns the token generator version.
-     */
-    function version() public view returns (string memory) {
-        return _version;
-    }
-}
-
 // File: contracts/token/ERC20/SimpleERC20.sol
 
-
+// SPDX-License-Identifier: MIT
 
 pragma solidity ^0.7.0;
-
-
-
 
 /**
  * @title SimpleERC20
- * @author ERC20 Generator (https://vittominacori.github.io/erc20-generator)
  * @dev Implementation of the SimpleERC20
  */
-contract SimpleERC20 is ERC20, ServicePayer, GeneratorCopyright("v4.6.0") {
-
-    constructor (
+contract SimpleERC20 is ERC20 {
+    constructor(
         string memory name,
         string memory symbol,
-        uint256 initialBalance,
-        address payable feeReceiver
-    )
-        ERC20(name, symbol)
-        ServicePayer(feeReceiver, "SimpleERC20")
-        payable
-    {
+        uint256 initialBalance
+    ) payable ERC20(name, symbol) {
         require(initialBalance > 0, "SimpleERC20: supply cannot be zero");
 
         _mint(_msgSender(), initialBalance);

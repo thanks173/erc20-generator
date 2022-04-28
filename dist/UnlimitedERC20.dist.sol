@@ -1,8 +1,6 @@
-// SPDX-License-Identifier: MIT
-
 // File: @openzeppelin/contracts/utils/Context.sol
 
-
+// SPDX-License-Identifier: MIT
 
 pragma solidity >=0.6.0 <0.8.0;
 
@@ -29,7 +27,7 @@ abstract contract Context {
 
 // File: @openzeppelin/contracts/access/Ownable.sol
 
-
+// SPDX-License-Identifier: MIT
 
 pragma solidity ^0.7.0;
 
@@ -99,7 +97,7 @@ abstract contract Ownable is Context {
 
 // File: @openzeppelin/contracts/token/ERC20/IERC20.sol
 
-
+// SPDX-License-Identifier: MIT
 
 pragma solidity ^0.7.0;
 
@@ -179,7 +177,7 @@ interface IERC20 {
 
 // File: @openzeppelin/contracts/math/SafeMath.sol
 
-
+// SPDX-License-Identifier: MIT
 
 pragma solidity ^0.7.0;
 
@@ -396,10 +394,9 @@ library SafeMath {
 
 // File: @openzeppelin/contracts/token/ERC20/ERC20.sol
 
-
+// SPDX-License-Identifier: MIT
 
 pragma solidity ^0.7.0;
-
 
 
 
@@ -704,10 +701,9 @@ contract ERC20 is Context, IERC20 {
 
 // File: @openzeppelin/contracts/token/ERC20/ERC20Burnable.sol
 
-
+// SPDX-License-Identifier: MIT
 
 pragma solidity ^0.7.0;
-
 
 
 /**
@@ -748,10 +744,9 @@ abstract contract ERC20Burnable is Context, ERC20 {
 
 // File: contracts/token/ERC20/behaviours/ERC20Mintable.sol
 
-
+// SPDX-License-Identifier: MIT
 
 pragma solidity ^0.7.0;
-
 
 /**
  * @title ERC20Mintable
@@ -815,7 +810,7 @@ abstract contract ERC20Mintable is ERC20 {
 
 // File: @openzeppelin/contracts/utils/EnumerableSet.sol
 
-
+// SPDX-License-Identifier: MIT
 
 pragma solidity ^0.7.0;
 
@@ -1115,7 +1110,7 @@ library EnumerableSet {
 
 // File: @openzeppelin/contracts/utils/Address.sol
 
-
+// SPDX-License-Identifier: MIT
 
 pragma solidity ^0.7.0;
 
@@ -1307,10 +1302,9 @@ library Address {
 
 // File: @openzeppelin/contracts/access/AccessControl.sol
 
-
+// SPDX-License-Identifier: MIT
 
 pragma solidity ^0.7.0;
-
 
 
 
@@ -1526,10 +1520,9 @@ abstract contract AccessControl is Context {
 
 // File: contracts/access/Roles.sol
 
-
+// SPDX-License-Identifier: MIT
 
 pragma solidity ^0.7.0;
-
 
 contract Roles is AccessControl {
 
@@ -1546,35 +1539,11 @@ contract Roles is AccessControl {
     }
 }
 
-// File: contracts/service/ServicePayer.sol
-
-
-
-pragma solidity ^0.7.0;
-
-interface IPayable {
-    function pay(string memory serviceName) external payable;
-}
-
-/**
- * @title ServicePayer
- * @dev Implementation of the ServicePayer
- */
-abstract contract ServicePayer {
-
-    constructor (address payable receiver, string memory serviceName) payable {
-        IPayable(receiver).pay{value: msg.value}(serviceName);
-    }
-}
-
 // File: contracts/token/ERC20/UnlimitedERC20.sol
 
-
+// SPDX-License-Identifier: MIT
 
 pragma solidity ^0.7.0;
-
-
-
 
 
 
@@ -1582,19 +1551,13 @@ pragma solidity ^0.7.0;
  * @title UnlimitedERC20
  * @dev Implementation of the UnlimitedERC20
  */
-contract UnlimitedERC20 is ERC20Mintable, ERC20Burnable, Ownable, Roles, ServicePayer {
-
-    constructor (
+contract UnlimitedERC20 is ERC20Mintable, ERC20Burnable, Ownable, Roles {
+    constructor(
         string memory name,
         string memory symbol,
         uint8 decimals,
-        uint256 initialBalance,
-        address payable feeReceiver
-    )
-        ERC20(name, symbol)
-        ServicePayer(feeReceiver, "UnlimitedERC20")
-        payable
-    {
+        uint256 initialBalance
+    ) payable ERC20(name, symbol) {
         _setupDecimals(decimals);
         _mint(_msgSender(), initialBalance);
     }
@@ -1607,7 +1570,11 @@ contract UnlimitedERC20 is ERC20Mintable, ERC20Burnable, Ownable, Roles, Service
      * @param account The address that will receive the minted tokens
      * @param amount The amount of tokens to mint
      */
-    function _mint(address account, uint256 amount) internal override onlyMinter {
+    function _mint(address account, uint256 amount)
+        internal
+        override
+        onlyMinter
+    {
         super._mint(account, amount);
     }
 

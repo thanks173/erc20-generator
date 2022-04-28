@@ -8,7 +8,6 @@ const { shouldBehaveLikeERC20Burnable } = require('./behaviours/ERC20Burnable.be
 const { shouldBehaveLikeERC20Mintable } = require('./behaviours/ERC20Mintable.behaviour');
 
 const AmazingERC20 = artifacts.require('AmazingERC20');
-const ServiceReceiver = artifacts.require('ServiceReceiver');
 
 contract('AmazingERC20', function ([owner, other, thirdParty]) {
   const _name = 'AmazingERC20';
@@ -17,11 +16,6 @@ contract('AmazingERC20', function ([owner, other, thirdParty]) {
   const _initialSupply = new BN(100000000);
 
   const fee = ether('0.1');
-
-  beforeEach(async function () {
-    this.serviceReceiver = await ServiceReceiver.new({ from: owner });
-    await this.serviceReceiver.setPrice('AmazingERC20', fee);
-  });
 
   context('creating valid token', function () {
     describe('as a AmazingERC20', function () {
@@ -32,7 +26,6 @@ contract('AmazingERC20', function ([owner, other, thirdParty]) {
             _symbol,
             _decimals,
             0,
-            this.serviceReceiver.address,
             {
               from: owner,
               value: fee,
@@ -58,7 +51,6 @@ contract('AmazingERC20', function ([owner, other, thirdParty]) {
             _symbol,
             _decimals,
             _initialSupply,
-            this.serviceReceiver.address,
             {
               from: owner,
               value: fee,
@@ -86,7 +78,6 @@ contract('AmazingERC20', function ([owner, other, thirdParty]) {
         _symbol,
         _decimals,
         _initialSupply,
-        this.serviceReceiver.address,
         {
           from: owner,
           value: fee,

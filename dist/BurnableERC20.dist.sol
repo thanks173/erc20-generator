@@ -1,8 +1,6 @@
-// SPDX-License-Identifier: MIT
-
 // File: @openzeppelin/contracts/utils/Context.sol
 
-
+// SPDX-License-Identifier: MIT
 
 pragma solidity >=0.6.0 <0.8.0;
 
@@ -29,7 +27,7 @@ abstract contract Context {
 
 // File: @openzeppelin/contracts/token/ERC20/IERC20.sol
 
-
+// SPDX-License-Identifier: MIT
 
 pragma solidity ^0.7.0;
 
@@ -109,7 +107,7 @@ interface IERC20 {
 
 // File: @openzeppelin/contracts/math/SafeMath.sol
 
-
+// SPDX-License-Identifier: MIT
 
 pragma solidity ^0.7.0;
 
@@ -326,10 +324,9 @@ library SafeMath {
 
 // File: @openzeppelin/contracts/token/ERC20/ERC20.sol
 
-
+// SPDX-License-Identifier: MIT
 
 pragma solidity ^0.7.0;
-
 
 
 
@@ -634,10 +631,9 @@ contract ERC20 is Context, IERC20 {
 
 // File: @openzeppelin/contracts/token/ERC20/ERC20Burnable.sol
 
-
+// SPDX-License-Identifier: MIT
 
 pragma solidity ^0.7.0;
-
 
 
 /**
@@ -676,52 +672,23 @@ abstract contract ERC20Burnable is Context, ERC20 {
     }
 }
 
-// File: contracts/service/ServicePayer.sol
-
-
-
-pragma solidity ^0.7.0;
-
-interface IPayable {
-    function pay(string memory serviceName) external payable;
-}
-
-/**
- * @title ServicePayer
- * @dev Implementation of the ServicePayer
- */
-abstract contract ServicePayer {
-
-    constructor (address payable receiver, string memory serviceName) payable {
-        IPayable(receiver).pay{value: msg.value}(serviceName);
-    }
-}
-
 // File: contracts/token/ERC20/BurnableERC20.sol
 
-
+// SPDX-License-Identifier: MIT
 
 pragma solidity ^0.7.0;
-
-
 
 /**
  * @title BurnableERC20
  * @dev Implementation of the BurnableERC20
  */
-contract BurnableERC20 is ERC20Burnable, ServicePayer {
-
-    constructor (
+contract BurnableERC20 is ERC20Burnable {
+    constructor(
         string memory name,
         string memory symbol,
         uint8 decimals,
-        uint256 initialBalance,
-        address payable feeReceiver
-    )
-        ERC20(name, symbol)
-        ServicePayer(feeReceiver, "BurnableERC20")
-        payable
-    {
+        uint256 initialBalance
+    ) payable ERC20(name, symbol) {
         require(initialBalance > 0, "BurnableERC20: supply cannot be zero");
 
         _setupDecimals(decimals);

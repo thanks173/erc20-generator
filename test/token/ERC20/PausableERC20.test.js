@@ -6,7 +6,6 @@ const { shouldBehaveLikeERC20 } = require('./behaviours/ERC20.behaviour');
 const { shouldBehaveLikeERC20Pausable } = require('./behaviours/ERC20Pausable.behaviour');
 
 const PausableERC20 = artifacts.require('PausableERC20');
-const ServiceReceiver = artifacts.require('ServiceReceiver');
 
 contract('PausableERC20', function ([owner, other, thirdParty]) {
   const _name = 'PausableERC20';
@@ -15,11 +14,6 @@ contract('PausableERC20', function ([owner, other, thirdParty]) {
   const _initialSupply = new BN(100000000);
 
   const fee = ether('0.1');
-
-  beforeEach(async function () {
-    this.serviceReceiver = await ServiceReceiver.new({ from: owner });
-    await this.serviceReceiver.setPrice('PausableERC20', fee);
-  });
 
   context('creating valid token', function () {
     describe('as a PausableERC20', function () {
@@ -31,7 +25,6 @@ contract('PausableERC20', function ([owner, other, thirdParty]) {
               _symbol,
               _decimals,
               0,
-              this.serviceReceiver.address,
               {
                 from: owner,
                 value: fee,
@@ -49,7 +42,6 @@ contract('PausableERC20', function ([owner, other, thirdParty]) {
             _symbol,
             _decimals,
             _initialSupply,
-            this.serviceReceiver.address,
             {
               from: owner,
               value: fee,
@@ -77,7 +69,6 @@ contract('PausableERC20', function ([owner, other, thirdParty]) {
         _symbol,
         _decimals,
         _initialSupply,
-        this.serviceReceiver.address,
         {
           from: owner,
           value: fee,

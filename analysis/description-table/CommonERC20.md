@@ -5,7 +5,7 @@
 
 |  File Name  |  SHA-1 Hash  |
 |-------------|--------------|
-| dist/CommonERC20.dist.sol | 6311b181f6f478171da9f492149020480a7f67b4 |
+| dist/CommonERC20.dist.sol | de9706af47d3807a9992aa5922725fe154a51c64 |
 
 
 ### Contracts Description Table
@@ -83,14 +83,8 @@
 | └ | finishMinting | Public ❗️ | 🛑  | canMint |
 | └ | _finishMinting | Internal 🔒 | 🛑  | |
 ||||||
-| **IPayable** | Interface |  |||
-| └ | pay | External ❗️ |  💵 |NO❗️ |
-||||||
-| **ServicePayer** | Implementation |  |||
-| └ | <Constructor> | Public ❗️ |  💵 |NO❗️ |
-||||||
-| **CommonERC20** | Implementation | ERC20Capped, ERC20Mintable, ERC20Burnable, Ownable, ServicePayer |||
-| └ | <Constructor> | Public ❗️ |  💵 | ERC20 ERC20Capped ServicePayer |
+| **CommonERC20** | Implementation | ERC20Capped, ERC20Mintable, ERC20Burnable, Ownable |||
+| └ | <Constructor> | Public ❗️ |  💵 | ERC20 ERC20Capped |
 | └ | _mint | Internal 🔒 | 🛑  | onlyOwner |
 | └ | _finishMinting | Internal 🔒 | 🛑  | onlyOwner |
 | └ | _beforeTokenTransfer | Internal 🔒 | 🛑  | |

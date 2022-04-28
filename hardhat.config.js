@@ -1,4 +1,4 @@
-require('chai/register-should');
+require('chai/register-should.js');
 require('@nomiclabs/hardhat-ganache');
 require('@nomiclabs/hardhat-truffle5');
 require('solidity-coverage');

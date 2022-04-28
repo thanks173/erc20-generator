@@ -199,65 +199,35 @@
 <!-- 7 -->
 <g id="node8" class="node">
 <title>7</title>
-<polygon fill="#f2f2f2" stroke="#000000" points="935.7476,-25.7 935.7476,-133.7 1111.1264,-133.7 1111.1264,-25.7 935.7476,-25.7"/>
-<text text-anchor="middle" x="1023.437" y="-117.1" font-family="Times,serif" font-size="14.00" fill="#000000">&lt;&lt;Interface&gt;&gt;</text>
-<text text-anchor="middle" x="1023.437" y="-100.3" font-family="Times,serif" font-size="14.00" fill="#000000">IPayable</text>
-<polyline fill="none" stroke="#000000" points="935.7476,-92.1 1111.1264,-92.1 "/>
-<text text-anchor="middle" x="1023.437" y="-75.5" font-family="Times,serif" font-size="14.00" fill="#000000"> </text>
-<polyline fill="none" stroke="#000000" points="935.7476,-67.3 1111.1264,-67.3 "/>
-<text text-anchor="start" x="943.7476" y="-50.7" font-family="Times,serif" font-size="14.00" fill="#000000">External:</text>
-<text text-anchor="start" x="943.7476" y="-33.9" font-family="Times,serif" font-size="14.00" fill="#000000"> &#160;&#160;&#160;&#160;pay(serviceName: string)</text>
+<polygon fill="#f2f2f2" stroke="#000000" points="117.5095,-.5 117.5095,-158.9 681.3645,-158.9 681.3645,-.5 117.5095,-.5"/>
+<text text-anchor="middle" x="399.437" y="-142.3" font-family="Times,serif" font-size="14.00" fill="#000000">MintableERC20</text>
+<polyline fill="none" stroke="#000000" points="117.5095,-134.1 681.3645,-134.1 "/>
+<text text-anchor="middle" x="399.437" y="-117.5" font-family="Times,serif" font-size="14.00" fill="#000000"> </text>
+<polyline fill="none" stroke="#000000" points="117.5095,-109.3 681.3645,-109.3 "/>
+<text text-anchor="start" x="125.5095" y="-92.7" font-family="Times,serif" font-size="14.00" fill="#000000">Internal:</text>
+<text text-anchor="start" x="125.5095" y="-75.9" font-family="Times,serif" font-size="14.00" fill="#000000"> &#160;&#160;&#160;_mint(account: address, amount: uint256)</text>
+<text text-anchor="start" x="125.5095" y="-59.1" font-family="Times,serif" font-size="14.00" fill="#000000"> &#160;&#160;&#160;_finishMinting()</text>
+<text text-anchor="start" x="125.5095" y="-42.3" font-family="Times,serif" font-size="14.00" fill="#000000"> &#160;&#160;&#160;_beforeTokenTransfer(from: address, to: address, amount: uint256)</text>
+<text text-anchor="start" x="125.5095" y="-25.5" font-family="Times,serif" font-size="14.00" fill="#000000">Public:</text>
+<text text-anchor="start" x="125.5095" y="-8.7" font-family="Times,serif" font-size="14.00" fill="#000000"> &#160;&#160;&#160;constructor(name: string, symbol: string, decimals: uint8, cap: uint256, initialBalance: uint256)</text>
 </g>
-<!-- 8 -->
-<g id="node9" class="node">
-<title>8</title>
-<polygon fill="#f2f2f2" stroke="#000000" points="972.3969,-254.7 972.3969,-362.7 1288.4771,-362.7 1288.4771,-254.7 972.3969,-254.7"/>
-<text text-anchor="middle" x="1130.437" y="-346.1" font-family="Times,serif" font-size="14.00" fill="#000000">&lt;&lt;Abstract&gt;&gt;</text>
-<text text-anchor="middle" x="1130.437" y="-329.3" font-family="Times,serif" font-size="14.00" fill="#000000">ServicePayer</text>
-<polyline fill="none" stroke="#000000" points="972.3969,-321.1 1288.4771,-321.1 "/>
-<text text-anchor="middle" x="1130.437" y="-304.5" font-family="Times,serif" font-size="14.00" fill="#000000"> </text>
-<polyline fill="none" stroke="#000000" points="972.3969,-296.3 1288.4771,-296.3 "/>
-<text text-anchor="start" x="980.3969" y="-279.7" font-family="Times,serif" font-size="14.00" fill="#000000">Public:</text>
-<text text-anchor="start" x="980.3969" y="-262.9" font-family="Times,serif" font-size="14.00" fill="#000000"> &#160;&#160;&#160;constructor(receiver: address, serviceName: string)</text>
-</g>
-<!-- 9 -->
-<g id="node10" class="node">
-<title>9</title>
-<polygon fill="#f2f2f2" stroke="#000000" points="230.9067,-.5 230.9067,-158.9 917.9673,-158.9 917.9673,-.5 230.9067,-.5"/>
-<text text-anchor="middle" x="574.437" y="-142.3" font-family="Times,serif" font-size="14.00" fill="#000000">MintableERC20</text>
-<polyline fill="none" stroke="#000000" points="230.9067,-134.1 917.9673,-134.1 "/>
-<text text-anchor="middle" x="574.437" y="-117.5" font-family="Times,serif" font-size="14.00" fill="#000000"> </text>
-<polyline fill="none" stroke="#000000" points="230.9067,-109.3 917.9673,-109.3 "/>
-<text text-anchor="start" x="238.9067" y="-92.7" font-family="Times,serif" font-size="14.00" fill="#000000">Internal:</text>
-<text text-anchor="start" x="238.9067" y="-75.9" font-family="Times,serif" font-size="14.00" fill="#000000"> &#160;&#160;&#160;_mint(account: address, amount: uint256)</text>
-<text text-anchor="start" x="238.9067" y="-59.1" font-family="Times,serif" font-size="14.00" fill="#000000"> &#160;&#160;&#160;_finishMinting()</text>
-<text text-anchor="start" x="238.9067" y="-42.3" font-family="Times,serif" font-size="14.00" fill="#000000"> &#160;&#160;&#160;_beforeTokenTransfer(from: address, to: address, amount: uint256)</text>
-<text text-anchor="start" x="238.9067" y="-25.5" font-family="Times,serif" font-size="14.00" fill="#000000">Public:</text>
-<text text-anchor="start" x="238.9067" y="-8.7" font-family="Times,serif" font-size="14.00" fill="#000000"> &#160;&#160;&#160;constructor(name: string, symbol: string, decimals: uint8, cap: uint256, initialBalance: uint256, feeReceiver: address)</text>
-</g>
-<!-- 9&#45;&gt;1 -->
+<!-- 7&#45;&gt;1 -->
 <g id="edge10" class="edge">
-<title>9&#45;&gt;1</title>
-<path fill="none" stroke="#000000" d="M313.4603,-158.9591C289.3143,-170.6081 270.4867,-182.9088 261.437,-195.4 183.3228,-303.2203 190.3201,-460.1566 209.4518,-571.4752"/>
-<polygon fill="none" stroke="#000000" points="199.182,-573.6792 215.0363,-601.2272 219.8216,-569.8051 199.182,-573.6792"/>
+<title>7&#45;&gt;1</title>
+<path fill="none" stroke="#000000" d="M286.2822,-159.0993C276.4501,-170.2103 267.8278,-182.3419 261.437,-195.4 204.0904,-312.5737 206.3917,-463.6439 218.7168,-570.9303"/>
+<polygon fill="none" stroke="#000000" points="208.3416,-572.5758 222.5632,-601.0011 229.1719,-569.9113 208.3416,-572.5758"/>
 </g>
-<!-- 9&#45;&gt;5 -->
+<!-- 7&#45;&gt;5 -->
 <g id="edge8" class="edge">
-<title>9&#45;&gt;5</title>
-<path fill="none" stroke="#000000" d="M635.4993,-159.1504C644.8164,-171.2732 654.5794,-183.9762 664.3118,-196.6393"/>
-<polygon fill="none" stroke="#000000" points="656.2581,-203.3912 682.8647,-220.7792 672.9086,-190.5943 656.2581,-203.3912"/>
+<title>7&#45;&gt;5</title>
+<path fill="none" stroke="#000000" d="M521.2147,-159.1504C543.6802,-173.8074 567.4455,-189.3124 590.8313,-204.5698"/>
+<polygon fill="none" stroke="#000000" points="585.1161,-213.3782 615.979,-220.9767 596.5909,-195.7903 585.1161,-213.3782"/>
 </g>
-<!-- 9&#45;&gt;6 -->
+<!-- 7&#45;&gt;6 -->
 <g id="edge9" class="edge">
-<title>9&#45;&gt;6</title>
-<path fill="none" stroke="#000000" d="M513.7216,-159.1504C510.5287,-163.3286 507.2831,-167.5757 504.0042,-171.8664"/>
-<polygon fill="none" stroke="#000000" points="495.5163,-165.6807 485.6433,-195.8929 512.2019,-178.4318 495.5163,-165.6807"/>
-</g>
-<!-- 9&#45;&gt;8 -->
-<g id="edge11" class="edge">
-<title>9&#45;&gt;8</title>
-<path fill="none" stroke="#000000" d="M875.0187,-158.91C905.3769,-169.9217 935.343,-182.0844 963.437,-195.4 988.05,-207.0657 1013.1151,-222.0949 1036.0878,-237.3688"/>
-<polygon fill="none" stroke="#000000" points="1030.3428,-246.1616 1061.0001,-254.5513 1042.266,-228.8747 1030.3428,-246.1616"/>
+<title>7&#45;&gt;6</title>
+<path fill="none" stroke="#000000" d="M399.437,-159.1504C399.437,-161.3788 399.437,-163.6268 399.437,-165.8905"/>
+<polygon fill="none" stroke="#000000" points="388.9371,-165.8929 399.437,-195.8929 409.9371,-165.893 388.9371,-165.8929"/>
 </g>
 </g>
 </svg>

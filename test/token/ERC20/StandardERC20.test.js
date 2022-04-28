@@ -3,7 +3,6 @@ const { BN, ether, expectRevert } = require('@openzeppelin/test-helpers');
 const { shouldBehaveLikeERC20 } = require('./behaviours/ERC20.behaviour');
 
 const StandardERC20 = artifacts.require('StandardERC20');
-const ServiceReceiver = artifacts.require('ServiceReceiver');
 
 contract('StandardERC20', function ([owner, other, thirdParty]) {
   const _name = 'StandardERC20';
@@ -12,11 +11,6 @@ contract('StandardERC20', function ([owner, other, thirdParty]) {
   const _initialSupply = new BN(100000000);
 
   const fee = ether('0.1');
-
-  beforeEach(async function () {
-    this.serviceReceiver = await ServiceReceiver.new({ from: owner });
-    await this.serviceReceiver.setPrice('StandardERC20', fee);
-  });
 
   context('creating valid token', function () {
     describe('as a StandardERC20', function () {
@@ -28,7 +22,6 @@ contract('StandardERC20', function ([owner, other, thirdParty]) {
               _symbol,
               _decimals,
               0,
-              this.serviceReceiver.address,
               {
                 from: owner,
                 value: fee,
@@ -46,7 +39,6 @@ contract('StandardERC20', function ([owner, other, thirdParty]) {
             _symbol,
             _decimals,
             _initialSupply,
-            this.serviceReceiver.address,
             {
               from: owner,
               value: fee,
@@ -74,7 +66,6 @@ contract('StandardERC20', function ([owner, other, thirdParty]) {
         _symbol,
         _decimals,
         _initialSupply,
-        this.serviceReceiver.address,
         {
           from: owner,
           value: fee,

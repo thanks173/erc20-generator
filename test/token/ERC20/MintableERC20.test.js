@@ -7,7 +7,6 @@ const { shouldBehaveLikeERC20Capped } = require('./behaviours/ERC20Capped.behavi
 const { shouldBehaveLikeERC20Mintable } = require('./behaviours/ERC20Mintable.behaviour');
 
 const MintableERC20 = artifacts.require('MintableERC20');
-const ServiceReceiver = artifacts.require('ServiceReceiver');
 
 contract('MintableERC20', function ([owner, other, thirdParty]) {
   const _name = 'MintableERC20';
@@ -17,11 +16,6 @@ contract('MintableERC20', function ([owner, other, thirdParty]) {
   const _initialSupply = new BN(100000000);
 
   const fee = ether('0.1');
-
-  beforeEach(async function () {
-    this.serviceReceiver = await ServiceReceiver.new({ from: owner });
-    await this.serviceReceiver.setPrice('MintableERC20', fee);
-  });
 
   context('creating valid token', function () {
     describe('as a ERC20Capped', function () {
@@ -33,7 +27,6 @@ contract('MintableERC20', function ([owner, other, thirdParty]) {
             _decimals,
             0,
             _initialSupply,
-            this.serviceReceiver.address,
             {
               from: owner,
               value: fee,
@@ -53,7 +46,6 @@ contract('MintableERC20', function ([owner, other, thirdParty]) {
             _decimals,
             _cap,
             0,
-            this.serviceReceiver.address,
             {
               from: owner,
               value: fee,
@@ -80,7 +72,6 @@ contract('MintableERC20', function ([owner, other, thirdParty]) {
             _decimals,
             _cap,
             _initialSupply,
-            this.serviceReceiver.address,
             {
               from: owner,
               value: fee,
@@ -109,7 +100,6 @@ contract('MintableERC20', function ([owner, other, thirdParty]) {
         _decimals,
         _cap,
         0,
-        this.serviceReceiver.address,
         {
           from: owner,
           value: fee,

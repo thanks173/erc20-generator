@@ -1,8 +1,6 @@
-// SPDX-License-Identifier: MIT
-
 // File: @openzeppelin/contracts/utils/Context.sol
 
-
+// SPDX-License-Identifier: MIT
 
 pragma solidity >=0.6.0 <0.8.0;
 
@@ -29,7 +27,7 @@ abstract contract Context {
 
 // File: @openzeppelin/contracts/token/ERC20/IERC20.sol
 
-
+// SPDX-License-Identifier: MIT
 
 pragma solidity ^0.7.0;
 
@@ -109,7 +107,7 @@ interface IERC20 {
 
 // File: @openzeppelin/contracts/math/SafeMath.sol
 
-
+// SPDX-License-Identifier: MIT
 
 pragma solidity ^0.7.0;
 
@@ -326,10 +324,9 @@ library SafeMath {
 
 // File: @openzeppelin/contracts/token/ERC20/ERC20.sol
 
-
+// SPDX-License-Identifier: MIT
 
 pragma solidity ^0.7.0;
-
 
 
 
@@ -634,10 +631,9 @@ contract ERC20 is Context, IERC20 {
 
 // File: @openzeppelin/contracts/token/ERC20/ERC20Burnable.sol
 
-
+// SPDX-License-Identifier: MIT
 
 pragma solidity ^0.7.0;
-
 
 
 /**
@@ -678,10 +674,9 @@ abstract contract ERC20Burnable is Context, ERC20 {
 
 // File: @openzeppelin/contracts/token/ERC20/ERC20Capped.sol
 
-
+// SPDX-License-Identifier: MIT
 
 pragma solidity ^0.7.0;
-
 
 /**
  * @dev Extension of {ERC20} that adds a cap to the supply of tokens.
@@ -725,7 +720,7 @@ abstract contract ERC20Capped is ERC20 {
 
 // File: @openzeppelin/contracts/introspection/IERC165.sol
 
-
+// SPDX-License-Identifier: MIT
 
 pragma solidity ^0.7.0;
 
@@ -752,14 +747,14 @@ interface IERC165 {
 
 // File: erc-payable-token/contracts/token/ERC1363/IERC1363.sol
 
-
+// SPDX-License-Identifier: MIT
 
 pragma solidity ^0.7.0;
 
 
-
 /**
  * @title IERC1363 Interface
+ * @author Vittorio Minacori (https://github.com/vittominacori)
  * @dev Interface for a Payable Token contract as defined in
  *  https://eips.ethereum.org/EIPS/eip-1363
  */
@@ -844,12 +839,13 @@ interface IERC1363 is IERC20, IERC165 {
 
 // File: erc-payable-token/contracts/token/ERC1363/IERC1363Receiver.sol
 
-
+// SPDX-License-Identifier: MIT
 
 pragma solidity ^0.7.0;
 
 /**
  * @title IERC1363Receiver Interface
+ * @author Vittorio Minacori (https://github.com/vittominacori)
  * @dev Interface for any contract that wants to support transferAndCall or transferFromAndCall
  *  from ERC1363 token contracts as defined in
  *  https://eips.ethereum.org/EIPS/eip-1363
@@ -878,12 +874,13 @@ interface IERC1363Receiver {
 
 // File: erc-payable-token/contracts/token/ERC1363/IERC1363Spender.sol
 
-
+// SPDX-License-Identifier: MIT
 
 pragma solidity ^0.7.0;
 
 /**
  * @title IERC1363Spender Interface
+ * @author Vittorio Minacori (https://github.com/vittominacori)
  * @dev Interface for any contract that wants to support approveAndCall
  *  from ERC1363 token contracts as defined in
  *  https://eips.ethereum.org/EIPS/eip-1363
@@ -911,7 +908,7 @@ interface IERC1363Spender {
 
 // File: @openzeppelin/contracts/utils/Address.sol
 
-
+// SPDX-License-Identifier: MIT
 
 pragma solidity ^0.7.0;
 
@@ -1103,7 +1100,7 @@ library Address {
 
 // File: @openzeppelin/contracts/introspection/ERC165Checker.sol
 
-
+// SPDX-License-Identifier: MIT
 
 pragma solidity ^0.7.0;
 
@@ -1237,10 +1234,9 @@ library ERC165Checker {
 
 // File: @openzeppelin/contracts/introspection/ERC165.sol
 
-
+// SPDX-License-Identifier: MIT
 
 pragma solidity ^0.7.0;
-
 
 /**
  * @dev Implementation of the {IERC165} interface.
@@ -1293,7 +1289,7 @@ abstract contract ERC165 is IERC165 {
 
 // File: erc-payable-token/contracts/token/ERC1363/ERC1363.sol
 
-
+// SPDX-License-Identifier: MIT
 
 pragma solidity ^0.7.0;
 
@@ -1301,11 +1297,9 @@ pragma solidity ^0.7.0;
 
 
 
-
-
-
 /**
  * @title ERC1363
+ * @author Vittorio Minacori (https://github.com/vittominacori)
  * @dev Implementation of an ERC1363 interface
  */
 contract ERC1363 is ERC20, IERC1363, ERC165 {
@@ -1458,7 +1452,7 @@ contract ERC1363 is ERC20, IERC1363, ERC165 {
 
 // File: @openzeppelin/contracts/access/Ownable.sol
 
-
+// SPDX-License-Identifier: MIT
 
 pragma solidity ^0.7.0;
 
@@ -1528,14 +1522,14 @@ abstract contract Ownable is Context {
 
 // File: eth-token-recover/contracts/TokenRecover.sol
 
-
+// SPDX-License-Identifier: MIT
 
 pragma solidity ^0.7.0;
 
 
-
 /**
  * @title TokenRecover
+ * @author Vittorio Minacori (https://github.com/vittominacori)
  * @dev Allow to recover any ERC20 sent into the contract for error
  */
 contract TokenRecover is Ownable {
@@ -1552,10 +1546,9 @@ contract TokenRecover is Ownable {
 
 // File: contracts/token/ERC20/behaviours/ERC20Mintable.sol
 
-
+// SPDX-License-Identifier: MIT
 
 pragma solidity ^0.7.0;
-
 
 /**
  * @title ERC20Mintable
@@ -1619,7 +1612,7 @@ abstract contract ERC20Mintable is ERC20 {
 
 // File: @openzeppelin/contracts/utils/EnumerableSet.sol
 
-
+// SPDX-License-Identifier: MIT
 
 pragma solidity ^0.7.0;
 
@@ -1919,10 +1912,9 @@ library EnumerableSet {
 
 // File: @openzeppelin/contracts/access/AccessControl.sol
 
-
+// SPDX-License-Identifier: MIT
 
 pragma solidity ^0.7.0;
-
 
 
 
@@ -2138,10 +2130,9 @@ abstract contract AccessControl is Context {
 
 // File: contracts/access/Roles.sol
 
-
+// SPDX-License-Identifier: MIT
 
 pragma solidity ^0.7.0;
-
 
 contract Roles is AccessControl {
 
@@ -2158,37 +2149,11 @@ contract Roles is AccessControl {
     }
 }
 
-// File: contracts/service/ServicePayer.sol
-
-
-
-pragma solidity ^0.7.0;
-
-interface IPayable {
-    function pay(string memory serviceName) external payable;
-}
-
-/**
- * @title ServicePayer
- * @dev Implementation of the ServicePayer
- */
-abstract contract ServicePayer {
-
-    constructor (address payable receiver, string memory serviceName) payable {
-        IPayable(receiver).pay{value: msg.value}(serviceName);
-    }
-}
-
 // File: contracts/token/ERC20/PowerfulERC20.sol
 
-
+// SPDX-License-Identifier: MIT
 
 pragma solidity ^0.7.0;
-
-
-
-
-
 
 
 
@@ -2196,21 +2161,21 @@ pragma solidity ^0.7.0;
  * @title PowerfulERC20
  * @dev Implementation of the PowerfulERC20
  */
-contract PowerfulERC20 is ERC20Capped, ERC20Mintable, ERC20Burnable, ERC1363, TokenRecover, Roles, ServicePayer {
-
-    constructor (
+contract PowerfulERC20 is
+    ERC20Capped,
+    ERC20Mintable,
+    ERC20Burnable,
+    ERC1363,
+    TokenRecover,
+    Roles
+{
+    constructor(
         string memory name,
         string memory symbol,
         uint8 decimals,
         uint256 cap,
-        uint256 initialBalance,
-        address payable feeReceiver
-    )
-        ERC1363(name, symbol)
-        ERC20Capped(cap)
-        ServicePayer(feeReceiver, "PowerfulERC20")
-        payable
-    {
+        uint256 initialBalance
+    ) payable ERC1363(name, symbol) ERC20Capped(cap) {
         _setupDecimals(decimals);
         _mint(_msgSender(), initialBalance);
     }
@@ -2223,7 +2188,11 @@ contract PowerfulERC20 is ERC20Capped, ERC20Mintable, ERC20Burnable, ERC1363, To
      * @param account The address that will receive the minted tokens
      * @param amount The amount of tokens to mint
      */
-    function _mint(address account, uint256 amount) internal override onlyMinter {
+    function _mint(address account, uint256 amount)
+        internal
+        override
+        onlyMinter
+    {
         super._mint(account, amount);
     }
 
@@ -2239,7 +2208,11 @@ contract PowerfulERC20 is ERC20Capped, ERC20Mintable, ERC20Burnable, ERC1363, To
     /**
      * @dev See {ERC20-_beforeTokenTransfer}. See {ERC20Capped-_beforeTokenTransfer}.
      */
-    function _beforeTokenTransfer(address from, address to, uint256 amount) internal override(ERC20, ERC20Capped) {
+    function _beforeTokenTransfer(
+        address from,
+        address to,
+        uint256 amount
+    ) internal override(ERC20, ERC20Capped) {
         super._beforeTokenTransfer(from, to, amount);
     }
 }

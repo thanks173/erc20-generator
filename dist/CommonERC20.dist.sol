@@ -1,8 +1,6 @@
-// SPDX-License-Identifier: MIT
-
 // File: @openzeppelin/contracts/utils/Context.sol
 
-
+// SPDX-License-Identifier: MIT
 
 pragma solidity >=0.6.0 <0.8.0;
 
@@ -29,7 +27,7 @@ abstract contract Context {
 
 // File: @openzeppelin/contracts/access/Ownable.sol
 
-
+// SPDX-License-Identifier: MIT
 
 pragma solidity ^0.7.0;
 
@@ -99,7 +97,7 @@ abstract contract Ownable is Context {
 
 // File: @openzeppelin/contracts/token/ERC20/IERC20.sol
 
-
+// SPDX-License-Identifier: MIT
 
 pragma solidity ^0.7.0;
 
@@ -179,7 +177,7 @@ interface IERC20 {
 
 // File: @openzeppelin/contracts/math/SafeMath.sol
 
-
+// SPDX-License-Identifier: MIT
 
 pragma solidity ^0.7.0;
 
@@ -396,10 +394,9 @@ library SafeMath {
 
 // File: @openzeppelin/contracts/token/ERC20/ERC20.sol
 
-
+// SPDX-License-Identifier: MIT
 
 pragma solidity ^0.7.0;
-
 
 
 
@@ -704,10 +701,9 @@ contract ERC20 is Context, IERC20 {
 
 // File: @openzeppelin/contracts/token/ERC20/ERC20Capped.sol
 
-
+// SPDX-License-Identifier: MIT
 
 pragma solidity ^0.7.0;
-
 
 /**
  * @dev Extension of {ERC20} that adds a cap to the supply of tokens.
@@ -751,10 +747,9 @@ abstract contract ERC20Capped is ERC20 {
 
 // File: @openzeppelin/contracts/token/ERC20/ERC20Burnable.sol
 
-
+// SPDX-License-Identifier: MIT
 
 pragma solidity ^0.7.0;
-
 
 
 /**
@@ -795,10 +790,9 @@ abstract contract ERC20Burnable is Context, ERC20 {
 
 // File: contracts/token/ERC20/behaviours/ERC20Mintable.sol
 
-
+// SPDX-License-Identifier: MIT
 
 pragma solidity ^0.7.0;
-
 
 /**
  * @title ERC20Mintable
@@ -860,35 +854,11 @@ abstract contract ERC20Mintable is ERC20 {
     }
 }
 
-// File: contracts/service/ServicePayer.sol
-
-
-
-pragma solidity ^0.7.0;
-
-interface IPayable {
-    function pay(string memory serviceName) external payable;
-}
-
-/**
- * @title ServicePayer
- * @dev Implementation of the ServicePayer
- */
-abstract contract ServicePayer {
-
-    constructor (address payable receiver, string memory serviceName) payable {
-        IPayable(receiver).pay{value: msg.value}(serviceName);
-    }
-}
-
 // File: contracts/token/ERC20/CommonERC20.sol
 
-
+// SPDX-License-Identifier: MIT
 
 pragma solidity ^0.7.0;
-
-
-
 
 
 
@@ -896,21 +866,14 @@ pragma solidity ^0.7.0;
  * @title CommonERC20
  * @dev Implementation of the CommonERC20
  */
-contract CommonERC20 is ERC20Capped, ERC20Mintable, ERC20Burnable, Ownable, ServicePayer {
-
-    constructor (
+contract CommonERC20 is ERC20Capped, ERC20Mintable, ERC20Burnable, Ownable {
+    constructor(
         string memory name,
         string memory symbol,
         uint8 decimals,
         uint256 cap,
-        uint256 initialBalance,
-        address payable feeReceiver
-    )
-        ERC20(name, symbol)
-        ERC20Capped(cap)
-        ServicePayer(feeReceiver, "CommonERC20")
-        payable
-    {
+        uint256 initialBalance
+    ) payable ERC20(name, symbol) ERC20Capped(cap) {
         _setupDecimals(decimals);
         _mint(_msgSender(), initialBalance);
     }
@@ -923,7 +886,11 @@ contract CommonERC20 is ERC20Capped, ERC20Mintable, ERC20Burnable, Ownable, Serv
      * @param account The address that will receive the minted tokens
      * @param amount The amount of tokens to mint
      */
-    function _mint(address account, uint256 amount) internal override onlyOwner {
+    function _mint(address account, uint256 amount)
+        internal
+        override
+        onlyOwner
+    {
         super._mint(account, amount);
     }
 
@@ -939,7 +906,11 @@ contract CommonERC20 is ERC20Capped, ERC20Mintable, ERC20Burnable, Ownable, Serv
     /**
      * @dev See {ERC20-_beforeTokenTransfer}. See {ERC20Capped-_beforeTokenTransfer}.
      */
-    function _beforeTokenTransfer(address from, address to, uint256 amount) internal override(ERC20, ERC20Capped) {
+    function _beforeTokenTransfer(
+        address from,
+        address to,
+        uint256 amount
+    ) internal override(ERC20, ERC20Capped) {
         super._beforeTokenTransfer(from, to, amount);
     }
 }

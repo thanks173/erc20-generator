@@ -1,8 +1,6 @@
-// SPDX-License-Identifier: MIT
-
 // File: @openzeppelin/contracts/utils/Context.sol
 
-
+// SPDX-License-Identifier: MIT
 
 pragma solidity >=0.6.0 <0.8.0;
 
@@ -29,7 +27,7 @@ abstract contract Context {
 
 // File: @openzeppelin/contracts/access/Ownable.sol
 
-
+// SPDX-License-Identifier: MIT
 
 pragma solidity ^0.7.0;
 
@@ -99,7 +97,7 @@ abstract contract Ownable is Context {
 
 // File: @openzeppelin/contracts/token/ERC20/IERC20.sol
 
-
+// SPDX-License-Identifier: MIT
 
 pragma solidity ^0.7.0;
 
@@ -179,7 +177,7 @@ interface IERC20 {
 
 // File: @openzeppelin/contracts/math/SafeMath.sol
 
-
+// SPDX-License-Identifier: MIT
 
 pragma solidity ^0.7.0;
 
@@ -396,10 +394,9 @@ library SafeMath {
 
 // File: @openzeppelin/contracts/token/ERC20/ERC20.sol
 
-
+// SPDX-License-Identifier: MIT
 
 pragma solidity ^0.7.0;
-
 
 
 
@@ -704,10 +701,9 @@ contract ERC20 is Context, IERC20 {
 
 // File: @openzeppelin/contracts/utils/Pausable.sol
 
-
+// SPDX-License-Identifier: MIT
 
 pragma solidity ^0.7.0;
-
 
 /**
  * @dev Contract module which allows children to implement an emergency stop
@@ -796,10 +792,9 @@ abstract contract Pausable is Context {
 
 // File: @openzeppelin/contracts/token/ERC20/ERC20Pausable.sol
 
-
+// SPDX-License-Identifier: MIT
 
 pragma solidity ^0.7.0;
-
 
 
 /**
@@ -824,53 +819,24 @@ abstract contract ERC20Pausable is ERC20, Pausable {
     }
 }
 
-// File: contracts/service/ServicePayer.sol
-
-
-
-pragma solidity ^0.7.0;
-
-interface IPayable {
-    function pay(string memory serviceName) external payable;
-}
-
-/**
- * @title ServicePayer
- * @dev Implementation of the ServicePayer
- */
-abstract contract ServicePayer {
-
-    constructor (address payable receiver, string memory serviceName) payable {
-        IPayable(receiver).pay{value: msg.value}(serviceName);
-    }
-}
-
 // File: contracts/token/ERC20/PausableERC20.sol
 
-
+// SPDX-License-Identifier: MIT
 
 pragma solidity ^0.7.0;
-
-
 
 
 /**
  * @title PausableERC20
  * @dev Implementation of the PausableERC20
  */
-contract PausableERC20 is ERC20Pausable, Ownable, ServicePayer {
-
-    constructor (
+contract PausableERC20 is ERC20Pausable, Ownable {
+    constructor(
         string memory name,
         string memory symbol,
         uint8 decimals,
-        uint256 initialBalance,
-        address payable feeReceiver
-    )
-      ERC20(name, symbol)
-      ServicePayer(feeReceiver, "PausableERC20")
-      payable
-    {
+        uint256 initialBalance
+    ) payable ERC20(name, symbol) {
         require(initialBalance > 0, "PausableERC20: supply cannot be zero");
 
         _setupDecimals(decimals);

@@ -5,7 +5,7 @@
 
 |  File Name  |  SHA-1 Hash  |
 |-------------|--------------|
-| dist/SimpleERC20.dist.sol | 57dcaabee8bc91c96c4ec57263963d172ff3a902 |
+| dist/SimpleERC20.dist.sol | ec5f53f9e34adff2f4506bbffd01ebf9634accd5 |
 
 
 ### Contracts Description Table
@@ -62,19 +62,8 @@
 | └ | _setupDecimals | Internal 🔒 | 🛑  | |
 | └ | _beforeTokenTransfer | Internal 🔒 | 🛑  | |
 ||||||
-| **IPayable** | Interface |  |||
-| └ | pay | External ❗️ |  💵 |NO❗️ |
-||||||
-| **ServicePayer** | Implementation |  |||
-| └ | <Constructor> | Public ❗️ |  💵 |NO❗️ |
-||||||
-| **GeneratorCopyright** | Implementation |  |||
-| └ | <Constructor> | Public ❗️ | 🛑  |NO❗️ |
-| └ | generator | Public ❗️ |   |NO❗️ |
-| └ | version | Public ❗️ |   |NO❗️ |
-||||||
-| **SimpleERC20** | Implementation | ERC20, ServicePayer, GeneratorCopyright |||
-| └ | <Constructor> | Public ❗️ |  💵 | ERC20 ServicePayer |
+| **SimpleERC20** | Implementation | ERC20 |||
+| └ | <Constructor> | Public ❗️ |  💵 | ERC20 |
 
 
 ### Legend

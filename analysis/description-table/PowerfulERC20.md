@@ -5,7 +5,7 @@
 
 |  File Name  |  SHA-1 Hash  |
 |-------------|--------------|
-| dist/PowerfulERC20.dist.sol | 6879a7f78eeab152a92d00a1cff01060ae73e7c8 |
+| dist/PowerfulERC20.dist.sol | 40b991aef26af4f6449e2d2c6d14e5a21ebda8ca |
 
 
 ### Contracts Description Table
@@ -178,14 +178,8 @@
 | **Roles** | Implementation | AccessControl |||
 | └ | <Constructor> | Public ❗️ | 🛑  |NO❗️ |
 ||||||
-| **IPayable** | Interface |  |||
-| └ | pay | External ❗️ |  💵 |NO❗️ |
-||||||
-| **ServicePayer** | Implementation |  |||
-| └ | <Constructor> | Public ❗️ |  💵 |NO❗️ |
-||||||
-| **PowerfulERC20** | Implementation | ERC20Capped, ERC20Mintable, ERC20Burnable, ERC1363, TokenRecover, Roles, ServicePayer |||
-| └ | <Constructor> | Public ❗️ |  💵 | ERC1363 ERC20Capped ServicePayer |
+| **PowerfulERC20** | Implementation | ERC20Capped, ERC20Mintable, ERC20Burnable, ERC1363, TokenRecover, Roles |||
+| └ | <Constructor> | Public ❗️ |  💵 | ERC1363 ERC20Capped |
 | └ | _mint | Internal 🔒 | 🛑  | onlyMinter |
 | └ | _finishMinting | Internal 🔒 | 🛑  | onlyOwner |
 | └ | _beforeTokenTransfer | Internal 🔒 | 🛑  | |

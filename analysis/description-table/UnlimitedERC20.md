@@ -5,7 +5,7 @@
 
 |  File Name  |  SHA-1 Hash  |
 |-------------|--------------|
-| dist/UnlimitedERC20.dist.sol | 16723249d27742520cde99e1a718a5a35965e88f |
+| dist/UnlimitedERC20.dist.sol | 5ccc87e6d69c4192affa2eed697188506174fa60 |
 
 
 ### Contracts Description Table
@@ -129,14 +129,8 @@
 | **Roles** | Implementation | AccessControl |||
 | └ | <Constructor> | Public ❗️ | 🛑  |NO❗️ |
 ||||||
-| **IPayable** | Interface |  |||
-| └ | pay | External ❗️ |  💵 |NO❗️ |
-||||||
-| **ServicePayer** | Implementation |  |||
-| └ | <Constructor> | Public ❗️ |  💵 |NO❗️ |
-||||||
-| **UnlimitedERC20** | Implementation | ERC20Mintable, ERC20Burnable, Ownable, Roles, ServicePayer |||
-| └ | <Constructor> | Public ❗️ |  💵 | ERC20 ServicePayer |
+| **UnlimitedERC20** | Implementation | ERC20Mintable, ERC20Burnable, Ownable, Roles |||
+| └ | <Constructor> | Public ❗️ |  💵 | ERC20 |
 | └ | _mint | Internal 🔒 | 🛑  | onlyMinter |
 | └ | _finishMinting | Internal 🔒 | 🛑  | onlyOwner |
 

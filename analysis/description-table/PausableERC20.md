@@ -5,7 +5,7 @@
 
 |  File Name  |  SHA-1 Hash  |
 |-------------|--------------|
-| dist/PausableERC20.dist.sol | cc5f2e92d8782ce9bb09c0cff86f4093b6193766 |
+| dist/PausableERC20.dist.sol | 3dcb6ea72daf33b7ccc653cc934fa13d45b4e6ea |
 
 
 ### Contracts Description Table
@@ -77,14 +77,8 @@
 | **ERC20Pausable** | Implementation | ERC20, Pausable |||
 | └ | _beforeTokenTransfer | Internal 🔒 | 🛑  | |
 ||||||
-| **IPayable** | Interface |  |||
-| └ | pay | External ❗️ |  💵 |NO❗️ |
-||||||
-| **ServicePayer** | Implementation |  |||
-| └ | <Constructor> | Public ❗️ |  💵 |NO❗️ |
-||||||
-| **PausableERC20** | Implementation | ERC20Pausable, Ownable, ServicePayer |||
-| └ | <Constructor> | Public ❗️ |  💵 | ERC20 ServicePayer |
+| **PausableERC20** | Implementation | ERC20Pausable, Ownable |||
+| └ | <Constructor> | Public ❗️ |  💵 | ERC20 |
 | └ | pause | External ❗️ | 🛑  | onlyOwner |
 | └ | unpause | External ❗️ | 🛑  | onlyOwner |
 

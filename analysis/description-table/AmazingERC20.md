@@ -5,7 +5,7 @@
 
 |  File Name  |  SHA-1 Hash  |
 |-------------|--------------|
-| dist/AmazingERC20.dist.sol | 59e1e94b7242e9441fc8b24f88226082cbe3d940 |
+| dist/AmazingERC20.dist.sol | 3ad82b249f1f62575354f3c543add58cbee1f2db |
 
 
 ### Contracts Description Table
@@ -135,14 +135,8 @@
 | └ | finishMinting | Public ❗️ | 🛑  | canMint |
 | └ | _finishMinting | Internal 🔒 | 🛑  | |
 ||||||
-| **IPayable** | Interface |  |||
-| └ | pay | External ❗️ |  💵 |NO❗️ |
-||||||
-| **ServicePayer** | Implementation |  |||
-| └ | <Constructor> | Public ❗️ |  💵 |NO❗️ |
-||||||
-| **AmazingERC20** | Implementation | ERC20Mintable, ERC20Burnable, ERC1363, TokenRecover, ServicePayer |||
-| └ | <Constructor> | Public ❗️ |  💵 | ERC1363 ServicePayer |
+| **AmazingERC20** | Implementation | ERC20Mintable, ERC20Burnable, ERC1363, TokenRecover |||
+| └ | <Constructor> | Public ❗️ |  💵 | ERC1363 |
 | └ | _mint | Internal 🔒 | 🛑  | onlyOwner |
 | └ | _finishMinting | Internal 🔒 | 🛑  | onlyOwner |
 

@@ -1,4 +1,4 @@
-require('chai/register-should');
+require('chai/register-should.js');
 
 const solcStable = {
   version: '0.7.6',

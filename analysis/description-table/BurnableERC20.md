@@ -5,7 +5,7 @@
 
 |  File Name  |  SHA-1 Hash  |
 |-------------|--------------|
-| dist/BurnableERC20.dist.sol | 9202015cd9eaec10819bdbc73ea385da0877e6c3 |
+| dist/BurnableERC20.dist.sol | c2e22652b338c939a6b4c6438a58d23ee5417964 |
 
 
 ### Contracts Description Table
@@ -66,14 +66,8 @@
 | └ | burn | Public ❗️ | 🛑  |NO❗️ |
 | └ | burnFrom | Public ❗️ | 🛑  |NO❗️ |
 ||||||
-| **IPayable** | Interface |  |||
-| └ | pay | External ❗️ |  💵 |NO❗️ |
-||||||
-| **ServicePayer** | Implementation |  |||
-| └ | <Constructor> | Public ❗️ |  💵 |NO❗️ |
-||||||
-| **BurnableERC20** | Implementation | ERC20Burnable, ServicePayer |||
-| └ | <Constructor> | Public ❗️ |  💵 | ERC20 ServicePayer |
+| **BurnableERC20** | Implementation | ERC20Burnable |||
+| └ | <Constructor> | Public ❗️ |  💵 | ERC20 |
 
 
 ### Legend
