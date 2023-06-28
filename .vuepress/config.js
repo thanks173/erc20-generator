@@ -1,5 +1,3 @@
-const vars = require('./.env.json');
-
 module.exports = {
   description: 'Create an ERC20 Token in less than a minute with the most used Smart Contract Generator for ERC20 Token. No login. No setup. No coding required.',
   base: '/',
@@ -10,6 +8,5 @@ module.exports = {
     ['meta', { property: 'twitter:card', content: 'summary_large_image' }],
     ['script', { src: '/assets/js/web3.min.js' }],
   ],
-  defaultNetwork: vars.defaultNetwork,
-  infuraProjectId: vars.infuraProjectId,
+  defaultNetwork: "goerli",
 };

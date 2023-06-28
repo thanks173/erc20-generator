@@ -15,7 +15,7 @@ export default {
   mixins: [
     utils,
   ],
-  data () {
+  data() {
     return {
       web3: null,
       web3Provider: null,
@@ -37,34 +37,22 @@ export default {
         },
         list: {
           mainnet: {
-            web3Provider: `https://mainnet.infura.io/v3/${config.infuraProjectId}`,
+            web3Provider: `https://rpc.ankr.com/eth`,
             etherscanLink: 'https://etherscan.io',
             id: 1,
             name: 'Ethereum Mainnet',
           },
-          ropsten: {
-            web3Provider: `https://ropsten.infura.io/v3/${config.infuraProjectId}`,
-            etherscanLink: 'https://ropsten.etherscan.io',
-            id: 3,
-            name: 'Ropsten Testnet',
-          },
-          rinkeby: {
-            web3Provider: `https://rinkeby.infura.io/v3/${config.infuraProjectId}`,
-            etherscanLink: 'https://rinkeby.etherscan.io',
-            id: 4,
-            name: 'Rinkeby Testnet',
-          },
-          kovan: {
-            web3Provider: `https://kovan.infura.io/v3/${config.infuraProjectId}`,
-            etherscanLink: 'https://kovan.etherscan.io',
-            id: 42,
-            name: 'Kovan Testnet',
-          },
           goerli: {
-            web3Provider: `https://goerli.infura.io/v3/${config.infuraProjectId}`,
+            web3Provider: `https://rpc.ankr.com/eth_goerli`,
             etherscanLink: 'https://goerli.etherscan.io',
             id: 5,
             name: 'Goerli Testnet',
+          },
+          bscTestnet: {
+            web3Provider: 'https://data-seed-prebsc-1-s1.binance.org:8545',
+            etherscanLink: 'https://testnet.bscscan.com/',
+            id: 97,
+            name: 'BSC Testnet',
           },
           mumbai: {
             web3Provider: 'https://rpc-mumbai.maticvigil.com',
@@ -72,11 +60,17 @@ export default {
             id: 80001,
             name: 'Mumbai Testnet',
           },
-          bscTestnet: {
-            web3Provider: 'https://data-seed-prebsc-1-s1.binance.org:8545',
-            etherscanLink: 'https://testnet.bscscan.com/',
-            id: 97,
-            name: 'BSC Testnet',
+          avalancheFuji: {
+            web3Provider: 'https://api.avax-test.network/ext/bc/C/rpc',
+            etherscanLink: 'https://testnet.snowtrace.io/',
+            id: 43113,
+            name: 'Avalanche Fuji Testnet',
+          },
+          arbitrumGoerli: {
+            web3Provider: 'https://goerli-rollup.arbitrum.io/rpc',
+            etherscanLink: 'https://testnet.arbiscan.io/',
+            id: 421613,
+            name: 'Arbitrum Goerli Testnet',
           },
         },
       },
@@ -98,7 +92,7 @@ export default {
     };
   },
   methods: {
-    async initWeb3 (network, checkWeb3) {
+    async initWeb3(network, checkWeb3) {
       if (!Object.prototype.hasOwnProperty.call(this.network.list, network)) {
         throw new Error(
           `Failed initializing network ${network}. Allowed values are ${Object.keys(this.network.list)}.`,
@@ -126,7 +120,7 @@ export default {
         this.web3 = new Web3(this.web3Provider);
       }
     },
-    initToken (tokenType) {
+    initToken(tokenType) {
       this.contracts.token = this.tokenList[tokenType];
       this.contracts.token.stringifiedAbi = JSON.stringify(this.contracts.token.abi);
     },
