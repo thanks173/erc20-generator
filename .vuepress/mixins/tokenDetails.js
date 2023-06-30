@@ -1,5 +1,5 @@
 export default {
-  data () {
+  data() {
     return {
       tokenDetails: [
         {
@@ -65,6 +65,22 @@ export default {
           erc1363: false,
           tokenRecover: false,
           gas: 1502638,
+        },
+        {
+          name: 'PublicMintableERC20',
+          version: '4.0.1',
+          standard: true,
+          verified: true,
+          detailed: true,
+          customizeDecimals: true,
+          supplyType: 'Unlimited',
+          accessType: 'None',
+          transferType: 'Unstoppable',
+          mintable: true,
+          burnable: false,
+          erc1363: false,
+          tokenRecover: false,
+          gas: 1123801,
         },
         {
           name: 'PausableERC20',

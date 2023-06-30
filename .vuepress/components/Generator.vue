@@ -688,6 +688,7 @@
           params.push(initialBalance);
           break;
         case 'StandardERC20':
+        case 'PublicMintableERC20':
         case 'BurnableERC20':
         case 'PausableERC20':
         case 'UnlimitedERC20':

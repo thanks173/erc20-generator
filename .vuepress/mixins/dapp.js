@@ -3,6 +3,7 @@ import utils from './utils';
 
 import SimpleERC20 from '../abi/token/SimpleERC20.json';
 import StandardERC20 from '../abi/token/StandardERC20.json';
+import PublicMintableERC20 from '../abi/token/PublicMintableERC20.json';
 import BurnableERC20 from '../abi/token/BurnableERC20.json';
 import MintableERC20 from '../abi/token/MintableERC20.json';
 import PausableERC20 from '../abi/token/PausableERC20.json';
@@ -79,6 +80,7 @@ export default {
         StandardERC20,
         BurnableERC20,
         MintableERC20,
+        PublicMintableERC20,
         PausableERC20,
         CommonERC20,
         UnlimitedERC20,
